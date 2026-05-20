@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Foodys Technical Manual</title>
+  <style>
+    :root {
+      --brand:    #ef4444;
+      --brand-lt: #fef2f2;
+      --brand-bd: #fecaca;
+      --green:    #16a34a;
+      --green-lt: #f0fdf4;
+      --green-bd: #bbf7d0;
+      --amber:    #d97706;
+      --amber-lt: #fffbeb;
+      --amber-bd: #fde68a;
+      --blue:     #2563eb;
+      --blue-lt:  #eff6ff;
+      --blue-bd:  #bfdbfe;
+      --purple:   #7c3aed;
+      --purple-lt:#f5f3ff;
+      --purple-bd:#ddd6fe;
+      --gray-900: #111827;
+      --gray-700: #374151;
+      --gray-600: #4b5563;
+      --gray-500: #6b7280;
+      --gray-200: #e5e7eb;
+      --gray-100: #f3f4f6;
+      --gray-50:  #f9fafb;
+      --code-bg:  #1e1e2e;
+      --code-txt: #cdd6f4;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: var(--gray-700);
+      background: #fff;
+      max-width: 900px;
+      margin: 0 auto;
+      padding-bottom: 80px;
+    }
+
+    /* ── Cover ── */
+    .cover {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #334155 100%);
+      color: white;
+      padding: 64px 48px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::before { content:''; position:absolute; top:-60px; right:-60px; width:260px; height:260px; border-radius:50%; background:rgba(124,58,237,0.15); }
+    .cover::after  { content:''; position:absolute; bottom:-40px; left:-40px; width:180px; height:180px; border-radius:50%; background:rgba(37,99,235,0.1); }
+    .cover-badge { display:inline-block; background:rgba(124,58,237,0.3); border:1px solid rgba(124,58,237,0.5); color:#c4b5fd; font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; border-radius:20px; padding:4px 14px; margin-bottom:20px; }
+    .cover h1 { font-size:2.6rem; font-weight:800; line-height:1.15; margin-bottom:8px; letter-spacing:-0.02em; }
+    .cover h1 span { color:#818cf8; }
+    .cover .tagline { font-size:1rem; color:#94a3b8; margin-bottom:36px; }
+    .cover-meta { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; position:relative; z-index:1; }
+    .cover-meta-item { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:10px 14px; }
+    .cover-meta-item .label { font-size:10px; color:#64748b; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:3px; }
+    .cover-meta-item .value { font-size:13px; font-weight:600; color:#f1f5f9; }
+
+    /* ── Sticky nav ── */
+    .sticky-nav { position:sticky; top:0; z-index:20; background:rgba(255,255,255,0.96); backdrop-filter:blur(10px); border-bottom:1px solid var(--gray-200); padding:10px 24px; display:flex; align-items:center; justify-content:space-between; }
+    .sticky-nav .doc-title { font-size:13px; font-weight:600; color:var(--gray-900); }
+    .sticky-nav .version { font-size:11px; background:var(--purple-lt); color:var(--purple); border-radius:12px; padding:2px 10px; }
+
+    /* ── Layout ── */
+    main { padding: 0 40px; }
+
+    /* ── TOC ── */
+    .toc { background:var(--gray-50); border:1px solid var(--gray-200); border-radius:16px; padding:24px 28px; margin:32px 0; }
+    .toc h4 { font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gray-500); margin-bottom:16px; }
+    .toc-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:6px 24px; }
+    .toc a { font-size:13px; color:var(--blue); text-decoration:none; display:flex; align-items:center; gap:6px; }
+    .toc a:hover { text-decoration:underline; }
+    .toc a .toc-num { font-size:10px; font-weight:700; color:var(--gray-500); min-width:18px; }
+
+    /* ── Chapters ── */
+    .chapter { margin-bottom:48px; scroll-margin-top:56px; }
+    .chapter-header { display:flex; align-items:center; gap:14px; margin-bottom:20px; padding-bottom:14px; border-bottom:2px solid var(--gray-100); }
+    .chapter-num { width:36px; height:36px; border-radius:10px; background:var(--purple-lt); color:var(--purple); font-size:14px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .chapter-header h2 { font-size:1.2rem; font-weight:700; color:var(--gray-900); }
+
+    h3 { font-size:0.95rem; font-weight:700; color:var(--gray-900); margin:20px 0 10px; }
+    h3:first-child { margin-top:0; }
+    p { margin-bottom:10px; }
+    p:last-child { margin-bottom:0; }
+    ul, ol { padding-left:1.4rem; margin-bottom:10px; }
+    li { margin-bottom:5px; }
+    strong { font-weight:600; color:var(--gray-900); }
+
+    /* ── Code ── */
+    pre {
+      background: var(--code-bg);
+      color: var(--code-txt);
+      border-radius: 12px;
+      padding: 16px 20px;
+      overflow-x: auto;
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      margin: 14px 0;
+    }
+    code {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 12.5px;
+      background: var(--gray-100);
+      color: #7c3aed;
+      border-radius: 4px;
+      padding: 1px 5px;
+    }
+    pre code { background: none; color: inherit; padding: 0; font-size: inherit; }
+
+    /* ── Callouts ── */
+    .callout { border-radius:12px; padding:13px 16px; margin:14px 0; font-size:13.5px; display:flex; gap:10px; align-items:flex-start; }
+    .callout .icon { flex-shrink:0; margin-top:1px; }
+    .callout-red    { background:var(--brand-lt); border:1px solid var(--brand-bd); color:#7f1d1d; }
+    .callout-green  { background:var(--green-lt); border:1px solid var(--green-bd); color:#14532d; }
+    .callout-amber  { background:var(--amber-lt); border:1px solid var(--amber-bd); color:#78350f; }
+    .callout-blue   { background:var(--blue-lt);  border:1px solid var(--blue-bd);  color:#1e3a8a; }
+    .callout-purple { background:var(--purple-lt);border:1px solid var(--purple-bd);color:#4c1d95; }
+    .callout-gray   { background:var(--gray-50);  border:1px solid var(--gray-200); color:var(--gray-700); }
+
+    /* ── Tables ── */
+    .table-wrap { overflow-x:auto; margin:14px 0; border-radius:12px; border:1px solid var(--gray-200); }
+    table { width:100%; border-collapse:collapse; font-size:13.5px; }
+    th { background:var(--gray-50); font-weight:700; color:var(--gray-900); font-size:12px; letter-spacing:0.04em; text-transform:uppercase; padding:10px 14px; text-align:left; border-bottom:1px solid var(--gray-200); }
+    td { padding:10px 14px; border-bottom:1px solid var(--gray-100); vertical-align:top; }
+    tr:last-child td { border-bottom:none; }
+    tr:hover td { background:var(--gray-50); }
+
+    /* ── Stack pills ── */
+    .stack-grid { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
+    .stack-pill { display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1px solid var(--gray-200); border-radius:20px; padding:5px 12px; font-size:12.5px; font-weight:600; color:var(--gray-700); }
+    .stack-pill.blue   { background:var(--blue-lt);   border-color:var(--blue-bd);   color:var(--blue); }
+    .stack-pill.green  { background:var(--green-lt);  border-color:var(--green-bd);  color:var(--green); }
+    .stack-pill.amber  { background:var(--amber-lt);  border-color:var(--amber-bd);  color:var(--amber); }
+    .stack-pill.purple { background:var(--purple-lt); border-color:var(--purple-bd); color:var(--purple); }
+    .stack-pill.red    { background:var(--brand-lt);  border-color:var(--brand-bd);  color:var(--brand); }
+
+    /* ── Status flow ── */
+    .status-flow { display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin:14px 0; }
+    .status-badge { display:inline-block; border-radius:20px; padding:4px 12px; font-size:12px; font-weight:700; }
+    .status-arrow { color:var(--gray-300); font-size:14px; }
+
+    /* ── Task table highlight ── */
+    .freq-high  { color:var(--brand);  font-weight:600; }
+    .freq-med   { color:var(--amber);  font-weight:600; }
+    .freq-low   { color:var(--green);  font-weight:600; }
+
+    /* ── Divider ── */
+    hr { border:none; border-top:1px solid var(--gray-100); margin:32px 0; }
+
+    @media (max-width:600px) {
+      main { padding:0 20px; }
+      .cover { padding:40px 24px; }
+      .cover h1 { font-size:1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Cover -->
+<div class="cover">
+  <div class="cover-badge">Technical Reference</div>
+  <h1>Föödys<br><span>Technical Manual</span></h1>
+  <p class="tagline">Architecture, Infrastructure &amp; Implementation Reference</p>
+  <div class="cover-meta">
+    <div class="cover-meta-item"><div class="label">Version</div><div class="value">1.0</div></div>
+    <div class="cover-meta-item"><div class="label">Last Updated</div><div class="value">May 2026</div></div>
+    <div class="cover-meta-item"><div class="label">Backend</div><div class="value">Django REST Framework</div></div>
+    <div class="cover-meta-item"><div class="label">Frontend</div><div class="value">React Native / Expo</div></div>
+    <div class="cover-meta-item"><div class="label">Deployment</div><div class="value">Render</div></div>
+    <div class="cover-meta-item"><div class="label">Database</div><div class="value">PostgreSQL</div></div>
+  </div>
+</div>
+
+<div class="sticky-nav">
+  <span class="doc-title">Foodys Technical Manual</span>
+  <span class="version">v1.0</span>
+</div>
+
+<main>
+
+  <div class="toc">
+    <h4>Contents</h4>
+    <div class="toc-grid">
+      <a href="#s1"><span class="toc-num">01</span> Tech Stack</a>
+      <a href="#s2"><span class="toc-num">02</span> System Architecture</a>
+      <a href="#s3"><span class="toc-num">03</span> Order Lifecycle</a>
+      <a href="#s4"><span class="toc-num">04</span> Rider Assignment &amp; Dispatch</a>
+      <a href="#s5"><span class="toc-num">05</span> Real-Time Infrastructure</a>
+      <a href="#s6"><span class="toc-num">06</span> Scheduled Tasks</a>
+      <a href="#s7"><span class="toc-num">07</span> Payment Integration</a>
+      <a href="#s8"><span class="toc-num">08</span> Push Notifications</a>
+      <a href="#s9"><span class="toc-num">09</span> Key Data Models</a>
+      <a href="#s10"><span class="toc-num">10</span> API Reference</a>
+      <a href="#s11"><span class="toc-num">11</span> Configuration &amp; Constants</a>
+      <a href="#s12"><span class="toc-num">12</span> Deployment</a>
+      <a href="#s13"><span class="toc-num">13</span> Development Guide</a>
+    </div>
+  </div>
+
+  <!-- 1. Tech Stack -->
+  <div class="chapter" id="s1">
+    <div class="chapter-header"><div class="chapter-num">1</div><h2>Tech Stack</h2></div>
+
+    <h3>Backend</h3>
+    <div class="stack-grid">
+      <span class="stack-pill blue">Django REST Framework</span>
+      <span class="stack-pill blue">Python</span>
+      <span class="stack-pill green">PostgreSQL</span>
+      <span class="stack-pill amber">Celery + Celery Beat</span>
+      <span class="stack-pill amber">Redis</span>
+      <span class="stack-pill purple">Django Channels (WebSockets)</span>
+      <span class="stack-pill">Monnify (Payments)</span>
+      <span class="stack-pill red">Fixie (Fixed Outgoing IP)</span>
+    </div>
+
+    <h3>Frontend</h3>
+    <div class="stack-grid">
+      <span class="stack-pill blue">React Native</span>
+      <span class="stack-pill blue">Expo</span>
+      <span class="stack-pill blue">TypeScript</span>
+      <span class="stack-pill green">NativeWind (Tailwind)</span>
+      <span class="stack-pill">Expo Router</span>
+      <span class="stack-pill">Expo Push Notifications</span>
+      <span class="stack-pill amber">AsyncStorage</span>
+    </div>
+
+    <h3>Infrastructure</h3>
+    <div class="stack-grid">
+      <span class="stack-pill purple">Render (Hosting)</span>
+      <span class="stack-pill green">PostgreSQL (Render managed)</span>
+      <span class="stack-pill amber">Redis (Render managed)</span>
+      <span class="stack-pill red">Fixie Proxy</span>
+      <span class="stack-pill">Brevo (Transactional email)</span>
+    </div>
+  </div>
+
+  <!-- 2. System Architecture -->
+  <div class="chapter" id="s2">
+    <div class="chapter-header"><div class="chapter-num">2</div><h2>System Architecture</h2></div>
+
+    <h3>High-Level Overview</h3>
+    <pre>
+┌─────────────────────────────────────────────────────────┐
+│                    MOBILE CLIENTS                        │
+│         iOS / Android (React Native + Expo)              │
+│     Customer App · Vendor App · Rider App (roles)        │
+└───────────────────────┬─────────────────────────────────┘
+                        │  REST API + WebSocket
+                        ▼
+┌─────────────────────────────────────────────────────────┐
+│                  RENDER WEB SERVICE                      │
+│              Django REST Framework (ASGI)                │
+│   ┌──────────────┐  ┌─────────────────┐                 │
+│   │  REST API    │  │  Django Channels │                 │
+│   │  (DRF Views) │  │  (WebSockets)    │                 │
+│   └──────────────┘  └─────────────────┘                 │
+└──────────────┬──────────────────┬───────────────────────┘
+               │                  │ Channel Layer
+               ▼                  ▼
+┌──────────────────┐   ┌────────────────────────────────┐
+│   PostgreSQL DB  │   │   Redis                         │
+│  (Render managed)│   │   · Channel layer               │
+│                  │   │   · Celery broker/backend        │
+│                  │   │   · Cache                        │
+└──────────────────┘   └──────────────┬─────────────────┘
+                                       │
+                        ┌─────────────▼──────────────────┐
+                        │  RENDER BACKGROUND WORKER       │
+                        │  Celery Worker + Beat Scheduler  │
+                        │  (celery worker --beat)          │
+                        │                                  │
+                        │  · Dispatch riders               │
+                        │  · Check pending orders          │
+                        │  · Auto-cancel unaccepted orders │
+                        │  · Auto-open/close restaurants   │
+                        │  · Process prep time alerts      │
+                        │  · Streak tasks                  │
+                        └────────────────────────────────┘</pre>
+
+    <div class="callout callout-amber">
+      <span class="icon">⚠️</span>
+      <span><strong>Single worker process:</strong> Celery Beat and the Celery worker run together in one Render background worker using the <code>--beat</code> flag. This is intentional for cost efficiency at current scale. If task volume grows significantly, split into separate worker and scheduler processes.</span>
+    </div>
+
+    <h3>Request Flow</h3>
+    <ol>
+      <li>React Native app makes HTTP request to DRF API or opens WebSocket connection.</li>
+      <li>DRF views authenticate via JWT, process business logic, write to PostgreSQL.</li>
+      <li>For real-time events, views publish to Redis channel layer via Django Channels.</li>
+      <li>WebSocket consumers push updates to connected clients instantly.</li>
+      <li>Celery tasks run async operations (dispatch, notifications, auto-cancels) independently.</li>
+      <li>Monnify webhooks hit a dedicated endpoint for payment confirmation.</li>
+    </ol>
+  </div>
+
+  <!-- 3. Order Lifecycle -->
+  <div class="chapter" id="s3">
+    <div class="chapter-header"><div class="chapter-num">3</div><h2>Order Lifecycle</h2></div>
+
+    <h3>Status Flow</h3>
+    <div class="status-flow">
+      <span class="status-badge" style="background:#fef9c3;color:#854d0e;">draft</span>
+      <span class="status-arrow">→</span>
+      <span class="status-badge" style="background:#dbeafe;color:#1e3a8a;">pending</span>
+      <span class="status-arrow">→</span>
+      <span class="status-badge" style="background:#ede9fe;color:#4c1d95;">preparing</span>
+      <span class="status-arrow">→</span>
+      <span class="status-badge" style="background:#fef3c7;color:#92400e;">ready</span>
+      <span class="status-arrow">→</span>
+      <span class="status-badge" style="background:#fed7aa;color:#9a3412;">delivery</span>
+      <span class="status-arrow">→</span>
+      <span class="status-badge" style="background:#bfdbfe;color:#1e40af;">arrival</span>
+      <span class="status-arrow">→</span>
+      <span class="status-badge" style="background:#dcfce7;color:#166534;">completed</span>
+    </div>
+    <p>Pickup orders follow a slightly different path: <code>pending → preparing → pickup_ready → completed</code></p>
+    <p>Rejected orders: <code>pending → rejected</code> (triggers immediate refund)</p>
+
+    <h3>Status Transition Rules</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Status</th><th>Set By</th><th>Side Effects</th></tr></thead>
+        <tbody>
+          <tr><td><code>draft</code></td><td>System (order creation)</td><td>No side effects; order not yet paid</td></tr>
+          <tr><td><code>pending</code></td><td>Monnify webhook / verify_payment</td><td>Vendor push notification, vendor WS event, streak awarded, FoodysRevenue created</td></tr>
+          <tr><td><code>preparing</code></td><td>Vendor (accept action)</td><td>Prep time timer starts, <code>preparation_started_at</code> set, <code>estimated_prep_time</code> calculated in seconds</td></tr>
+          <tr><td><code>ready</code></td><td>Vendor (mark ready)</td><td>Vendor payout #1 triggered, batch created/joined, dispatch engine queued, <code>actual_prep_time</code> recorded</td></tr>
+          <tr><td><code>pickup_ready</code></td><td>Vendor (pickup flow)</td><td>Vendor payout #2 triggered, customer push with confirmation code</td></tr>
+          <tr><td><code>delivery</code></td><td>Rider (confirms pickup)</td><td><code>picked_up_at</code> set, customer notified</td></tr>
+          <tr><td><code>arrival</code></td><td>Rider (marks arrived)</td><td><code>arrived_at</code> set, customer push, 10-minute auto-complete countdown starts</td></tr>
+          <tr><td><code>completed</code></td><td>Rider (code confirmation) or auto-complete</td><td>Rider payout triggered, <code>delivery_time_minutes</code> calculated, customer prompted to review</td></tr>
+          <tr><td><code>rejected</code></td><td>Vendor (reject) or system (auto-cancel at T+10)</td><td>OrderRefund created, <code>process_order_refund</code> task fired, customer WS event, push notification</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Pending Order Auto-Cancel</h3>
+    <p>The <code>check_pending_orders</code> task runs every 30 seconds and escalates unacknowledged paid orders:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Time Since Payment</th><th>Action</th><th>Flag Set</th></tr></thead>
+        <tbody>
+          <tr><td>T + 3 min</td><td>Soft reminder push + WebSocket to vendor</td><td><code>pending_reminder_1_sent = True</code></td></tr>
+          <tr><td>T + 6 min</td><td>Urgent reminder push + WebSocket to vendor</td><td><code>pending_reminder_2_sent = True</code></td></tr>
+          <tr><td>T + 10 min</td><td>Auto-cancel: order → rejected, refund initiated, both parties notified, <code>auto_cancelled = True</code></td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout callout-blue">
+      <span class="icon">ℹ️</span>
+      <span>Age is calculated from <code>payment_verified_at</code>, not <code>created_at</code>. Orders are created before payment completes, so the timer only starts once Monnify confirms the payment.</span>
+    </div>
+  </div>
+
+  <!-- 4. Rider Assignment & Dispatch -->
+  <div class="chapter" id="s4">
+    <div class="chapter-header"><div class="chapter-num">4</div><h2>Rider Assignment &amp; Dispatch</h2></div>
+
+    <h3>Batching Strategy</h3>
+    <p>Orders from the same restaurant are grouped into a batch before dispatch to optimise rider routes and reduce per-delivery cost.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Constant</th><th>Value</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><code>BATCH_WINDOW_SECONDS</code></td><td>180 (3 min)</td><td>How long to collect orders before dispatching</td></tr>
+          <tr><td><code>BATCH_MAX_ORDERS</code></td><td>5</td><td>Force-dispatch when batch reaches this size</td></tr>
+          <tr><td><code>MAX_ORDER_WAIT_SECONDS</code></td><td>420 (7 min)</td><td>Max time a ready order can wait before urgent dispatch</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Rider Selection Algorithm</h3>
+    <p>The dispatch engine runs a two-pass selection on every call to <code>run_dispatch(campus)</code>:</p>
+    <pre>
+Pass 1 — Zone match
+  Filter riders in the correct zone group for this restaurant
+  Pick the rider with fewest active orders
+
+Pass 2 — Campus fallback (if Pass 1 yields nothing)
+  Consider all available riders on campus
+  Pick the rider with fewest active orders
+
+If no rider found:
+  Queue order in OrderAssignmentQueue
+  Retry every 60 seconds or immediately when any order completes</pre>
+
+    <h3>Zone Groups (Veritas University)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Group</th><th>Zones</th><th>Coverage</th></tr></thead>
+        <tbody>
+          <tr><td><strong>AB</strong></td><td>A, B, C</td><td>Boys Cafe area, boys hostels (A–Q), Ase, MunchBox</td></tr>
+          <tr><td><strong>DE</strong></td><td>D, E, F, G, H, I</td><td>Campus perimeter, Girls Cafe, Law, Clinic, Kelson, Health Sciences, New buildings</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Delivery Ordering (Sequence)</h3>
+    <p>Once a rider is assigned, orders within a batch are sorted by delivery fee (lowest = nearest) to give the rider an optimised route. This sequence is stored in <code>Order.delivery_sequence</code> and drives the display order in the rider app.</p>
+
+    <h3>Dispatch Triggers</h3>
+    <p>The <code>dispatch_trips</code> Celery task runs every 60 seconds per campus and handles three scenarios in priority order:</p>
+    <ol>
+      <li><strong>Mature batches</strong> — batches whose collection window has expired (≥ 3 minutes old)</li>
+      <li><strong>Urgent unbatched orders</strong> — ready orders waiting longer than <code>MAX_ORDER_WAIT_SECONDS</code> without a rider</li>
+      <li><strong>Queued retries</strong> — orders in <code>OrderAssignmentQueue</code> from previous failed assignments</li>
+    </ol>
+
+    <div class="callout callout-green">
+      <span class="icon">✅</span>
+      <span><strong>Retry acceleration:</strong> <code>retry_queued_orders()</code> is also called <code>on_commit</code> whenever any order completes or is rejected, giving queued orders an immediate retry without waiting for the 60-second cron cycle.</span>
+    </div>
+  </div>
+
+  <!-- 5. Real-Time Infrastructure -->
+  <div class="chapter" id="s5">
+    <div class="chapter-header"><div class="chapter-num">5</div><h2>Real-Time Infrastructure</h2></div>
+
+    <h3>WebSocket Channel Groups</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Group Name</th><th>Audience</th><th>Events Received</th></tr></thead>
+        <tbody>
+          <tr><td><code>user_{user_id}</code></td><td>Customer / Rider</td><td>Order status updates, trip assignments, payment confirmations</td></tr>
+          <tr><td><code>vendor_{restaurant_id}</code></td><td>Vendor</td><td>New orders, order updates, delay alerts, restaurant status changes, pending reminders, cutoff warnings</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key WebSocket Event Types</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Event Type</th><th>Sent To</th><th>When</th></tr></thead>
+        <tbody>
+          <tr><td><code>new_order</code></td><td>Vendor</td><td>Payment verified — new order lands in vendor's queue</td></tr>
+          <tr><td><code>order_update</code></td><td>Customer</td><td>Any order status change</td></tr>
+          <tr><td><code>trip_assignment</code></td><td>Rider</td><td>Batch dispatched to rider — includes full order cards</td></tr>
+          <tr><td><code>pending_order_reminder</code></td><td>Vendor</td><td>T+3 and T+6 min escalation for unacknowledged orders</td></tr>
+          <tr><td><code>order_delay_alert</code></td><td>Vendor</td><td>Prep time exceeded — vendor must speed up</td></tr>
+          <tr><td><code>restaurant_status_update</code></td><td>Vendor</td><td>Auto-open or auto-close fires from Celery tasks</td></tr>
+          <tr><td><code>cutoff_warning</code></td><td>Vendor</td><td>Campus is past order cutoff time</td></tr>
+          <tr><td><code>send_payment_update</code></td><td>Customer</td><td>Payment confirmed by Monnify webhook</td></tr>
+          <tr><td><code>order_rejected</code></td><td>Customer</td><td>Order rejected by vendor or auto-cancelled</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Redis as Channel Layer</h3>
+    <p>Django Channels uses Redis as its channel layer backend. Redis is also used by Celery as its message broker and result backend. Both share the same Redis instance on Render.</p>
+
+    <div class="callout callout-amber">
+      <span class="icon">⚠️</span>
+      <span>If Redis goes down, both real-time WebSocket messaging and Celery task processing will fail simultaneously. Monitor Redis health as a critical dependency.</span>
+    </div>
+  </div>
+
+  <!-- 6. Scheduled Tasks -->
+  <div class="chapter" id="s6">
+    <div class="chapter-header"><div class="chapter-num">6</div><h2>Scheduled Tasks (Celery Beat)</h2></div>
+
+    <p>All tasks are registered via the <code>seed_periodic_tasks</code> management command. Run after any new task is added:</p>
+    <pre>python manage.py seed_periodic_tasks</pre>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Task Name</th><th>Module Path</th><th>Frequency</th></tr></thead>
+        <tbody>
+          <tr><td>Build and dispatch rider trips</td><td><code>orders.tasks.dispatch_trips</code></td><td class="freq-high">Every 1 min</td></tr>
+          <tr><td>Check pending orders</td><td><code>orders.tasks.check_pending_orders</code></td><td class="freq-high">Every 30 sec</td></tr>
+          <tr><td>Check delayed orders</td><td><code>orders.tasks.check_delayed_orders</code></td><td class="freq-high">Every 30 sec</td></tr>
+          <tr><td>Handle stuck arrival orders</td><td><code>orders.tasks.handle_stuck_arrivals</code></td><td class="freq-high">Every 1 min</td></tr>
+          <tr><td>Cleanup expired draft orders</td><td><code>orders.tasks.cleanup_expired_drafts</code></td><td class="freq-med">Every 5 min</td></tr>
+          <tr><td>Aggregate prep time metrics</td><td><code>orders.tasks.aggregate_prep_time_metrics</code></td><td class="freq-low">Daily 2:00 AM</td></tr>
+          <tr><td>Auto-open restaurants</td><td><code>restaurant.tasks.auto_open_restaurants</code></td><td class="freq-high">Every 1 min</td></tr>
+          <tr><td>Auto-close restaurants</td><td><code>restaurant.tasks.auto_close_restaurants</code></td><td class="freq-high">Every 1 min</td></tr>
+          <tr><td>Auto-resume offline restaurants</td><td><code>restaurant.tasks.auto_resume_offline_restaurants</code></td><td class="freq-high">Every 1 min</td></tr>
+          <tr><td>Warn vendors before cutoff</td><td><code>restaurant.tasks.warn_vendors_cutoff</code></td><td class="freq-high">Every 1 min</td></tr>
+          <tr><td>Send inactivity notifications</td><td><code>services.tasks.send_inactivity_notifications_task</code></td><td class="freq-low">Daily midnight</td></tr>
+          <tr><td>Send streak reminders</td><td><code>leaderboard.tasks.send_streak_reminders</code></td><td class="freq-low">Daily 6:00 PM</td></tr>
+          <tr><td>Send streak expiry warnings</td><td><code>leaderboard.tasks.send_streak_expiry_warnings</code></td><td class="freq-low">Daily 9:30 PM</td></tr>
+          <tr><td>Send streak lost notifications</td><td><code>leaderboard.tasks.send_streak_lost_notifications</code></td><td class="freq-low">Daily 9:00 AM</td></tr>
+          <tr><td>Reset broken streaks</td><td><code>leaderboard.tasks.reset_broken_streaks</code></td><td class="freq-low">Daily 9:15 AM</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout callout-red">
+      <span class="icon">🚨</span>
+      <span><strong>Stale worker gotcha:</strong> After running migrations that add new model fields, always restart the Celery worker. A worker started before the migration will not see the new fields and will error silently or raise <code>FieldError</code>.</span>
+    </div>
+  </div>
+
+  <!-- 7. Payment Integration -->
+  <div class="chapter" id="s7">
+    <div class="chapter-header"><div class="chapter-num">7</div><h2>Payment Integration (Monnify)</h2></div>
+
+    <h3>Transaction Flow</h3>
+    <ol>
+      <li>Checkout screen calls <code>POST /payments/create-checkout/</code> with <code>orderId</code>.</li>
+      <li>Backend initialises transaction with Monnify, then creates a Virtual Account for bank transfer.</li>
+      <li>Frontend displays account number, bank name, amount, and expiry to customer.</li>
+      <li>Customer transfers the exact amount.</li>
+      <li>Monnify fires a <code>SUCCESSFUL_TRANSACTION</code> webhook to <code>/payments/webhook/monnify/</code>.</li>
+      <li>Backend verifies signature, then verifies transaction with Monnify API.</li>
+      <li>On success: Payment marked <code>paid</code>, order moved to <code>pending</code>, vendor notified.</li>
+      <li>As a fallback, <code>POST /payments/verify/</code> is available for manual polling from the frontend.</li>
+    </ol>
+
+    <h3>Refund Flow</h3>
+    <pre>
+Order rejected / auto-cancelled
+    → OrderRefund record created (status: pending)
+    → process_order_refund.delay(order_id) fired
+    → Task calls Monnify /api/v1/refunds/initiate-refund
+    → On success: refund.status = 'processing'
+    → Monnify sends funds back to customer's bank account
+    → Max retries: 3, with 60s delay between attempts
+    → Permanent errors (permission denied) do not retry</pre>
+
+    <div class="callout callout-purple">
+      <span class="icon">🔒</span>
+      <span><strong>Fixie proxy:</strong> All outbound requests to Monnify (refunds, disbursements, token fetch) are routed through Fixie to present a fixed outgoing IP address. Monnify whitelists this IP. Only the <code>"https"</code> key is needed in the proxies dict. <code>FIXIE_URL</code> format: <code>http://user:password@host:port</code>.</span>
+    </div>
+
+    <h3>Vendor Payouts (Batch Disbursement)</h3>
+    <p>Vendor payouts use Monnify's batch disbursement API (<code>/api/v2/disbursements/batch</code>). Three manual windows per day plus automatic nightly processing at 10:30 PM. Rider payouts follow the same mechanism.</p>
+
+    <h3>Monnify Refund Reason Length</h3>
+    <div class="callout callout-amber">
+      <span class="icon">⚠️</span>
+      <span>Monnify enforces a <strong>64-character maximum</strong> on <code>refundReason</code>. Always trim to <code>[:64]</code> before sending. Using <code>[:100]</code> will cause a <code>400 Refund Reason must be between 1 and 64 characters</code> error.</span>
+    </div>
+  </div>
+
+  <!-- 8. Push Notifications -->
+  <div class="chapter" id="s8">
+    <div class="chapter-header"><div class="chapter-num">8</div><h2>Push Notifications</h2></div>
+
+    <p>Push notifications are sent via <code>accounts.utils.send_push_notification()</code> using Expo's push notification service. A user's push token is stored in <code>CustomUser.push_token</code> and registered on app launch.</p>
+
+    <h3>Notification Inventory</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Notification</th><th>Recipient</th><th>Trigger</th><th>Sound</th></tr></thead>
+        <tbody>
+          <tr><td>New order received</td><td>Vendor</td><td>Payment verified</td><td>vendor.wav</td></tr>
+          <tr><td>Pending order reminder (soft)</td><td>Vendor</td><td>T+3 min unacknowledged</td><td>vendor.wav</td></tr>
+          <tr><td>Pending order reminder (urgent)</td><td>Vendor</td><td>T+6 min unacknowledged</td><td>urgent</td></tr>
+          <tr><td>Order auto-cancelled</td><td>Vendor + Customer</td><td>T+10 min unacknowledged</td><td>vendor.wav</td></tr>
+          <tr><td>Order status update</td><td>Customer</td><td>Every status change</td><td>vendor.wav</td></tr>
+          <tr><td>Order rejected</td><td>Customer</td><td>Vendor rejects</td><td>vendor.wav</td></tr>
+          <tr><td>Refund processed</td><td>Customer</td><td>Monnify confirms refund</td><td>vendor.wav</td></tr>
+          <tr><td>Trip assignment</td><td>Rider</td><td>Batch dispatched</td><td>swoosh.wav</td></tr>
+          <tr><td>Prep time delay</td><td>Customer</td><td>Prep time exceeded</td><td>vendor.wav</td></tr>
+          <tr><td>Prep delay alert</td><td>Vendor</td><td>Prep time exceeded</td><td>vendor.wav</td></tr>
+          <tr><td>Arrival reminder</td><td>Customer</td><td>5 min after rider marks arrival</td><td>vendor.wav</td></tr>
+          <tr><td>Auto-completed</td><td>Customer + Rider</td><td>10 min after arrival, no response</td><td>vendor.wav</td></tr>
+          <tr><td>Streak reminder</td><td>Customer</td><td>Daily 6 PM (if streak active, not ordered today)</td><td>vendor.wav</td></tr>
+          <tr><td>Streak expiry warning</td><td>Customer</td><td>Daily 9:30 PM (last chance)</td><td>swoosh.wav</td></tr>
+          <tr><td>Streak lost</td><td>Customer</td><td>Daily 9 AM (streak broken)</td><td>vendor.wav</td></tr>
+          <tr><td>Streak milestone</td><td>Customer</td><td>On order, if milestone reached</td><td>vendor.wav</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 9. Key Data Models -->
+  <div class="chapter" id="s9">
+    <div class="chapter-header"><div class="chapter-num">9</div><h2>Key Data Models</h2></div>
+
+    <h3>Order</h3>
+    <p>The central model. Key fields beyond the obvious:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Field</th><th>Type</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td><code>payment_verified_at</code></td><td>DateTimeField</td><td>When Monnify confirmed payment — used as T=0 for pending order timer</td></tr>
+          <tr><td><code>preparation_started_at</code></td><td>DateTimeField</td><td>When vendor accepted — prep time countdown origin</td></tr>
+          <tr><td><code>estimated_prep_time</code></td><td>PositiveIntegerField</td><td>In <strong>seconds</strong> — derived from MenuItem.preparation_time (minutes) at accept time</td></tr>
+          <tr><td><code>actual_prep_time</code></td><td>PositiveIntegerField</td><td>In seconds — set when order marked ready</td></tr>
+          <tr><td><code>prep_time_exceeded_at</code></td><td>DateTimeField</td><td>Set once when prep time exceeded — prevents duplicate alerts</td></tr>
+          <tr><td><code>pending_reminder_1_sent</code></td><td>BooleanField</td><td>T+3 min vendor reminder sent</td></tr>
+          <tr><td><code>pending_reminder_2_sent</code></td><td>BooleanField</td><td>T+6 min vendor reminder sent</td></tr>
+          <tr><td><code>auto_cancelled</code></td><td>BooleanField</td><td>True if auto-cancelled at T+10 (not manually rejected)</td></tr>
+          <tr><td><code>batch</code></td><td>FK → OrderBatch</td><td>The dispatch batch this order belongs to</td></tr>
+          <tr><td><code>delivery_sequence</code></td><td>PositiveIntegerField</td><td>Rider's delivery order within a batch (1 = nearest)</td></tr>
+          <tr><td><code>trip_notified</code></td><td>BooleanField</td><td>Rider has been notified — prevents duplicate dispatch notifications</td></tr>
+          <tr><td><code>confirmation_code</code></td><td>CharField(4)</td><td>4-digit code for delivery / pickup confirmation</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Restaurant</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Field</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td><code>status</code></td><td>OPEN / CLOSED / OFFLINE</td></tr>
+          <tr><td><code>offline_until</code></td><td>DateTimeField — when the restaurant auto-resumes from a pause</td></tr>
+          <tr><td><code>auto_open</code></td><td>Boolean — whether the restaurant auto-opens at <code>opening_time</code> each day</td></tr>
+          <tr><td><code>pickup_enabled</code></td><td>Boolean — whether pickup fulfilment is available</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>OrderBatch</h3>
+    <p>Groups orders from the same restaurant for a single rider trip. States: <code>pending → dispatched → completed</code>. Only delivery orders are batched; pickup orders are never added.</p>
+
+    <h3>OrderAssignmentQueue</h3>
+    <p>Holds orders that failed rider assignment. Tracks <code>retry_count</code> and <code>last_tried_at</code>. Cleared when a rider is successfully assigned.</p>
+
+    <h3>OrderStreak</h3>
+    <p>One per user. Tracks <code>current_streak</code>, <code>longest_streak</code>, <code>last_order_date</code>, broken streak metadata, and free restore counters. Streak increments when order moves to <code>pending</code> (payment confirmed).</p>
+  </div>
+
+  <!-- 10. API Reference -->
+  <div class="chapter" id="s10">
+    <div class="chapter-header"><div class="chapter-num">10</div><h2>API Reference</h2></div>
+
+    <h3>Orders</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Method</th><th>Endpoint</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>POST</code></td><td><code>/orders/create-order/</code></td><td>Create a new order (accepts <code>?minimal=true</code> for lightweight response)</td></tr>
+          <tr><td><code>GET</code></td><td><code>/orders/</code></td><td>List orders — role-aware (vendor/customer/rider filtering)</td></tr>
+          <tr><td><code>GET</code></td><td><code>/orders/{id}/</code></td><td>Single order detail (cached 5 min)</td></tr>
+          <tr><td><code>PATCH</code></td><td><code>/orders/update/{id}/</code></td><td>Update order status</td></tr>
+          <tr><td><code>POST</code></td><td><code>/orders/{id}/reject/</code></td><td>Vendor rejects order (triggers refund)</td></tr>
+          <tr><td><code>POST</code></td><td><code>/orders/{id}/pickup-confirm/</code></td><td>Vendor confirms pickup via customer code</td></tr>
+          <tr><td><code>POST</code></td><td><code>/orders/validate-cart/</code></td><td>Pre-payment validation (delivery window, restaurant status, item availability, minimum order)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Restaurants</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Method</th><th>Endpoint</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>GET</code></td><td><code>/restaurant/</code></td><td>List restaurants by campus</td></tr>
+          <tr><td><code>GET</code></td><td><code>/restaurant/{id}/</code></td><td>Restaurant detail (cached 5 min)</td></tr>
+          <tr><td><code>PATCH</code></td><td><code>/restaurant/edit/{id}/</code></td><td>Update restaurant (status, offline_until, menu settings, etc.)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Payments</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Method</th><th>Endpoint</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>POST</code></td><td><code>/payments/create-checkout/</code></td><td>Initialise Monnify transaction and get virtual account</td></tr>
+          <tr><td><code>POST</code></td><td><code>/payments/verify/</code></td><td>Manually verify payment status with Monnify</td></tr>
+          <tr><td><code>POST</code></td><td><code>/payments/webhook/monnify/</code></td><td>Monnify webhook receiver (signature validated)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Leaderboard &amp; Rewards</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Method</th><th>Endpoint</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>GET</code></td><td><code>/leaderboard/streak/</code></td><td>Current user streak data, week days, points, multiplier</td></tr>
+          <tr><td><code>POST</code></td><td><code>/leaderboard/streak/restore/</code></td><td>Restore broken streak (free or points-based)</td></tr>
+          <tr><td><code>GET</code></td><td><code>/leaderboard/rewards/</code></td><td>Available rewards with <code>is_locked</code> and <code>points_to_unlock</code></td></tr>
+          <tr><td><code>POST</code></td><td><code>/leaderboard/rewards/redeem/{id}/</code></td><td>Redeem a reward</td></tr>
+          <tr><td><code>GET</code></td><td><code>/leaderboard/rewards/my/</code></td><td>User's redemption history</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 11. Configuration & Constants -->
+  <div class="chapter" id="s11">
+    <div class="chapter-header"><div class="chapter-num">11</div><h2>Configuration &amp; Constants</h2></div>
+
+    <h3>Application Constants (<code>foodysbackend/settings/base.py</code>)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Constant</th><th>Value</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>BATCH_WINDOW_SECONDS</code></td><td>180</td><td>Order collection window before batch dispatch</td></tr>
+          <tr><td><code>BATCH_MAX_ORDERS</code></td><td>5</td><td>Force-dispatch batch at this size</td></tr>
+          <tr><td><code>MAX_ORDER_WAIT_SECONDS</code></td><td>420</td><td>Urgent dispatch threshold for unbatched orders</td></tr>
+          <tr><td><code>VENDOR_COMMISSION_RATE</code></td><td>0.05</td><td>5% of food subtotal</td></tr>
+          <tr><td><code>SERVICE_FEE_RATE</code></td><td>0.05</td><td>5% added to customer at checkout</td></tr>
+          <tr><td><code>REMINDER_MINUTES</code></td><td>5</td><td>Minutes after rider arrival before customer reminder fires</td></tr>
+          <tr><td><code>AUTOCOMPLETE_MINUTES</code></td><td>10</td><td>Minutes after rider arrival before order auto-completes</td></tr>
+          <tr><td><code>PREP_TIME_BUFFER_SECONDS</code></td><td>30</td><td>Buffer before prep delay alert fires</td></tr>
+          <tr><td><code>AVERAGE_RIDER_SPEED</code></td><td>5 km/h</td><td>Used for ETA calculations</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Business Rules (Enforced in Code)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Rule</th><th>Value</th><th>Enforced In</th></tr></thead>
+        <tbody>
+          <tr><td>Minimum delivery order</td><td>₦500</td><td><code>validate_cart</code>, <code>OrderCreateSerializer</code>, cart UI</td></tr>
+          <tr><td>Minimum pickup order</td><td>₦300</td><td>Same — calculated as <code>min_delivery * 0.6</code></td></tr>
+          <tr><td>Maximum packs per order</td><td>3</td><td><code>validate_packs()</code> in serializer, <code>handleIncrement</code> in app</td></tr>
+          <tr><td>Pending auto-cancel</td><td>T+10 min</td><td><code>check_pending_orders</code> task</td></tr>
+          <tr><td>Vendor reminder 1</td><td>T+3 min</td><td><code>check_pending_orders</code> task</td></tr>
+          <tr><td>Vendor reminder 2</td><td>T+6 min</td><td><code>check_pending_orders</code> task</td></tr>
+          <tr><td>Free streak restores</td><td>5/month</td><td><code>OrderStreak.FREE_RESTORES_PER_MONTH</code></td></tr>
+          <tr><td>Streak restore cost</td><td>50 pts</td><td><code>STREAK_RESTORE_COST</code> in leaderboard views</td></tr>
+          <tr><td>Monnify refund reason max</td><td>64 chars</td><td><code>[:64]</code> trim in <code>process_order_refund</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Required Environment Variables</h3>
+    <pre>
+# Django
+SECRET_KEY=
+DEBUG=False
+ALLOWED_HOSTS=
+
+# Database
+DATABASE_URL=
+
+# Redis
+REDIS_URL=
+
+# Monnify
+MONNIFY_API_KEY=
+MONNIFY_SECRET_KEY=
+MONNIFY_CONTRACT_CODE=
+MONNIFY_BASE_URL=https://api.monnify.com
+MONNIFY_SOURCE_ACCOUNT_NUMBER=
+
+# Fixie (fixed IP for Monnify outbound)
+FIXIE_URL=http://user:password@host:port
+
+# Admin payout PIN
+ADMIN_PAYOUT_PIN=
+
+# Expo push notifications (if using server-side token)
+EXPO_ACCESS_TOKEN=
+
+# Brevo (email)
+BREVO_API_KEY=</pre>
+  </div>
+
+  <!-- 12. Deployment -->
+  <div class="chapter" id="s12">
+    <div class="chapter-header"><div class="chapter-num">12</div><h2>Deployment</h2></div>
+
+    <h3>Render Services</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Service</th><th>Type</th><th>Start Command</th></tr></thead>
+        <tbody>
+          <tr><td>Web API</td><td>Web Service</td><td><code>gunicorn foodysbackend.asgi:application -w 4 -k uvicorn.workers.UvicornWorker</code></td></tr>
+          <tr><td>Background Worker</td><td>Background Worker</td><td><code>celery -A foodysbackend worker --beat --loglevel=info</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout callout-amber">
+      <span class="icon">⚠️</span>
+      <span><strong>Single worker process:</strong> <code>--beat</code> runs the Beat scheduler inside the same worker process. This is acceptable at current scale. Do not run separate <code>celery beat</code> and <code>celery worker</code> processes simultaneously — it will cause duplicate task execution.</span>
+    </div>
+
+    <h3>Post-Deploy Checklist</h3>
+    <ol>
+      <li>Run <code>python manage.py migrate</code></li>
+      <li>Run <code>python manage.py seed_periodic_tasks</code></li>
+      <li>Restart the background worker (to pick up new model fields)</li>
+      <li>Verify Celery Beat tasks are registered in Django admin → Periodic Tasks</li>
+      <li>Test Monnify webhook endpoint is reachable</li>
+      <li>Verify Fixie proxy is routing correctly for Monnify refund calls</li>
+    </ol>
+
+    <h3>Local Development</h3>
+    <pre>
+# Backend
+python manage.py runserver
+
+# Celery (local — solo pool avoids duplicate delivery sequences)
+celery -A foodysbackend worker --beat --loglevel=info --pool=solo
+
+# PostgreSQL
+brew services start postgresql  # Homebrew managed</pre>
+
+    <div class="callout callout-red">
+      <span class="icon">🚨</span>
+      <span>Always use <code>--pool=solo</code> locally. Running without it causes duplicate <code>delivery_sequence</code> values in batch dispatch due to concurrent worker threads.</span>
+    </div>
+  </div>
+
+  <!-- 13. Development Guide -->
+  <div class="chapter" id="s13">
+    <div class="chapter-header"><div class="chapter-num">13</div><h2>Development Guide &amp; Known Gotchas</h2></div>
+
+    <h3>Known Gotchas</h3>
+
+    <div class="callout callout-red">
+      <span class="icon">🚨</span>
+      <div>
+        <strong>Stale Celery worker after migrations</strong><br>
+        If you add a new field to a model and run migrations, the running Celery worker still has the old model definition in memory. Always restart the worker after any schema change or you'll get silent failures or <code>FieldError</code> exceptions in tasks.
+      </div>
+    </div>
+
+    <div class="callout callout-red">
+      <span class="icon">🚨</span>
+      <div>
+        <strong>Duplicate dispatch notifications</strong><br>
+        The dispatch query must include both <code>rider__isnull=True</code> AND <code>trip_notified=False</code> filters. Missing either causes duplicate rider notifications. This was a historical bug — both filters are required.
+      </div>
+    </div>
+
+    <div class="callout callout-amber">
+      <span class="icon">⚠️</span>
+      <div>
+        <strong>MultipleObjectsReturned in test scripts</strong><br>
+        When querying users by username in management commands or test scripts, use email or ID instead. Usernames are not guaranteed unique at the DB level — querying by username can silently return the wrong user or raise <code>MultipleObjectsReturned</code>.
+      </div>
+    </div>
+
+    <div class="callout callout-amber">
+      <span class="icon">⚠️</span>
+      <div>
+        <strong>Shield-aware streak reset</strong><br>
+        The <code>reset_broken_streaks</code> task uses a 2-day cutoff from today (not 1-day) to avoid zeroing streaks that are still within the 24-hour restore window. If you change the restore window, update the cutoff accordingly.
+      </div>
+    </div>
+
+    <div class="callout callout-blue">
+      <span class="icon">ℹ️</span>
+      <div>
+        <strong>Streak increment on pending (not completed)</strong><br>
+        Streaks are incremented when an order moves to <code>pending</code> (payment confirmed), not <code>completed</code>. This is an intentional product decision — the customer has committed by paying. Do not change this without product review.
+      </div>
+    </div>
+
+    <h3>Testing Async Tasks</h3>
+    <p>Use management commands or shell scripts to verify task behaviour rather than waiting for Celery Beat. For example, to test the pending order auto-cancel:</p>
+    <pre>
+# Create a test order via the app, pay, then call the task directly:
+from orders.tasks import check_pending_orders
+check_pending_orders.apply()
+
+# To reset test orders between runs:
+python manage.py reset_orders</pre>
+
+    <h3>Adding a New Periodic Task</h3>
+    <ol>
+      <li>Write the task in the relevant <code>tasks.py</code> file decorated with <code>@shared_task</code>.</li>
+      <li>Add an entry to the <code>tasks</code> list in <code>seed_periodic_tasks.py</code>.</li>
+      <li>Run <code>python manage.py seed_periodic_tasks</code>.</li>
+      <li>Restart the Celery worker.</li>
+      <li>Verify in Django admin → Periodic Tasks that the new task appears and is enabled.</li>
+    </ol>
+
+    <hr>
+    <p style="font-size:12px;color:var(--gray-500);text-align:center;">
+      Foodys Technical Manual v1.0 · Foodys Enterprise · Nigeria<br>
+      For operational procedures, see the Foodys Operations Manual. For legal terms, see the Foodys Terms and Conditions.
+    </p>
+  </div>
+
+</main>
+</body>
+</html>

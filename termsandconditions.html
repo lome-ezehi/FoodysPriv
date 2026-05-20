@@ -3,298 +3,604 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Privacy Policy - Foodys</title>
+  <title>Terms and Conditions - Foodys</title>
   <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
   <style>
+    :root {
+      --brand:     #ef4444;
+      --brand-lt:  #fef2f2;
+      --brand-bd:  #fecaca;
+      --green:     #16a34a;
+      --green-lt:  #f0fdf4;
+      --green-bd:  #bbf7d0;
+      --amber:     #d97706;
+      --amber-lt:  #fffbeb;
+      --amber-bd:  #fde68a;
+      --gray-900:  #111827;
+      --gray-700:  #374151;
+      --gray-500:  #6b7280;
+      --gray-200:  #e5e7eb;
+      --gray-100:  #f3f4f6;
+      --gray-50:   #f9fafb;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      max-width: 800px;
-      margin: auto;
-      padding: 20px;
-      color: #333;
-      background-color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--gray-700);
+      background: #fff;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 0 60px;
     }
+
+    /* ── Header ── */
     header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 12px 16px;
-      border-bottom: 1px solid #e5e7eb; /* gray-200 */
-      margin-bottom: 10px;
-    }
-    header button {
-      font-size: 24px;
-      background: none;
-      border: none;
-      cursor: pointer;
+      justify-content: center;
+      padding: 14px 20px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--gray-200);
     }
     header h1 {
+      font-size: 1rem;
       font-weight: 600;
-      font-size: 1.25rem;
-      margin: 0;
-      flex: 1;
-      text-align: center;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      color: #000;
+      color: var(--gray-900);
     }
-    main {
-      padding: 0 16px;
-      overflow-y: auto;
-      max-height: calc(100vh - 100px);
-    }
+
+    /* ── App hero ── */
     .app-header {
       text-align: center;
-      padding-bottom: 24px;
-      border-bottom: 1px solid #f3f4f6; /* gray-100 */
-      margin-bottom: 20px;
+      padding: 36px 20px 28px;
+      border-bottom: 1px solid var(--gray-100);
+      margin-bottom: 8px;
     }
-    .app-icon-container {
-      width: 64px;
-      height: 64px;
-      background-color: #f5f3f1; /* orange-500 */
-      border-radius: 16px;
-      margin: 0 auto 12px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    .app-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 18px;
+      background: var(--gray-100);
+      margin: 0 auto 14px;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     }
-    .app-icon-container img {
-      width: 64px;
-      height: 64px;
-      border-radius: 8px;
-      object-fit: cover;
+    .app-icon img { width: 72px; height: 72px; object-fit: cover; border-radius: 18px; }
+    .app-header h2 { font-size: 1.6rem; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+    .app-header .meta { font-size: 0.875rem; color: var(--gray-500); }
+    .app-header .eff-date {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.8rem;
+      background: var(--gray-100);
+      color: var(--gray-500);
+      border-radius: 20px;
+      padding: 4px 12px;
     }
-    .app-header h2 {
-      font-size: 1.5rem;
+
+    /* ── Body layout ── */
+    main { padding: 0 20px; }
+
+    /* ── TOC ── */
+    .toc {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+    .toc h4 {
+      font-size: 0.75rem;
       font-weight: 700;
-      margin: 0 0 4px;
-      color: #111827; /* gray-900 */
-    }
-    .app-header p {
-      margin: 0;
-      font-size: 0.875rem;
-      color: #6b7280; /* gray-500 */
-    }
-    section {
-      margin-bottom: 24px;
-    }
-    section h3 {
-      font-size: 1.125rem;
-      font-weight: 600;
-      color: #111827;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gray-500);
       margin-bottom: 12px;
     }
-    p, li {
-      font-size: 1rem;
-      color: #374151; /* gray-700 */
-      line-height: 1.5;
+    .toc ol {
+      padding-left: 1.2rem;
+      column-count: 2;
+      column-gap: 24px;
     }
-    ul {
-      padding-left: 1.5rem;
-      margin-top: 0.5rem;
-      margin-bottom: 1rem;
-      color: #374151;
+    .toc li { font-size: 0.875rem; margin-bottom: 6px; }
+    .toc a { color: var(--brand); text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+
+    /* ── Sections ── */
+    section {
+      margin-bottom: 32px;
+      scroll-margin-top: 64px;
     }
-    strong {
-      font-weight: 600;
-      color: #111827;
+    section h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--gray-100);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    .user-consent {
-      background-color: #dcfce7; /* green-50 */
-      border: 1px solid #bbf7d0; /* green-200 */
+    section h3 .num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: var(--brand-lt);
+      color: var(--brand);
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    p { margin-bottom: 10px; }
+    p:last-child { margin-bottom: 0; }
+
+    ul, ol {
+      padding-left: 1.4rem;
+      margin-bottom: 10px;
+    }
+    li { margin-bottom: 6px; }
+
+    strong { font-weight: 600; color: var(--gray-900); }
+
+    /* ── Callout boxes ── */
+    .callout {
       border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 24px;
-      color: #166534; /* green-800 */
+      padding: 14px 16px;
+      margin: 14px 0;
+      font-size: 0.9rem;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
     }
-    .user-consent strong {
+    .callout .icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+    .callout-green  { background: var(--green-lt);  border: 1px solid var(--green-bd);  color: #14532d; }
+    .callout-red    { background: var(--brand-lt);  border: 1px solid var(--brand-bd);  color: #7f1d1d; }
+    .callout-amber  { background: var(--amber-lt);  border: 1px solid var(--amber-bd);  color: #78350f; }
+    .callout-gray   { background: var(--gray-50);   border: 1px solid var(--gray-200);  color: var(--gray-700); }
+
+    /* ── Tag pills ── */
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 20px;
+      padding: 2px 9px;
+      margin: 0 2px;
+    }
+    .tag-red   { background: var(--brand-lt); color: var(--brand); }
+    .tag-green { background: var(--green-lt); color: var(--green); }
+    .tag-gray  { background: var(--gray-100); color: var(--gray-500); }
+
+    /* ── Consent box ── */
+    .consent {
+      background: var(--green-lt);
+      border: 1.5px solid var(--green-bd);
+      border-radius: 16px;
+      padding: 20px 22px;
+      margin: 32px 0 24px;
+    }
+    .consent strong {
       display: block;
+      font-size: 1.05rem;
       margin-bottom: 8px;
-      font-size: 1.125rem;
+      color: #14532d;
     }
-    .contact-info p {
-      margin: 4px 0;
+    .consent p { color: #166534; font-size: 0.9rem; margin: 0; }
+
+    /* ── Contact ── */
+    .contact-card {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 14px;
+      padding: 20px 22px;
+    }
+    .contact-card a { color: var(--brand); }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--gray-500);
+      margin-top: 40px;
+      padding: 0 20px;
+    }
+    footer a { color: var(--gray-500); }
+
+    @media (max-width: 520px) {
+      .toc ol { column-count: 1; }
     }
   </style>
 </head>
 <body>
+
   <header>
-    <!-- <button onclick="history.back()" aria-label="Go back">←</button> -->
-    <h1 title="Terms and Conditions">Terms and Conditions</h1>
-    <!-- <div style="width:24px;"></div> placeholder to balance flex -->
+    <h1>Terms &amp; Conditions</h1>
   </header>
 
+  <div class="app-header">
+    <div class="app-icon">
+      <img src="assets/icon.png" alt="Foodys" />
+    </div>
+    <h2>Föödys</h2>
+    <p class="meta">Foodys Links LTD · Nigeria</p>
+    <span class="eff-date">Effective Date: May 20, 2026</span>
+  </div>
+
   <main>
-    <div class="app-header">
-      <div class="app-icon-container">
-        <img src="assets/favicon.ico" alt="Foodys Icon" />
-      </div>
-      <h2>Föödys</h2>
-      <p>Terms and Conditions</p>
+
+    <p style="margin-top:20px;">
+      Welcome to Foodys! These Terms and Conditions ("Terms") govern your use of the Foodys mobile application, website, and all related services (collectively, the "Platform"). By creating an account, placing an order, or accessing the Platform in any capacity, you confirm that you have read, understood, and agree to be bound by these Terms.
+    </p>
+
+    <!-- TOC -->
+    <div class="toc">
+      <h4>Contents</h4>
+      <ol>
+        <li><a href="#s1">Eligibility</a></li>
+        <li><a href="#s2">Account Registration</a></li>
+        <li><a href="#s3">Services Overview</a></li>
+        <li><a href="#s4">Orders &amp; Payments</a></li>
+        <li><a href="#s5">Delivery &amp; Pickup</a></li>
+        <li><a href="#s6">Cancellations &amp; Refunds</a></li>
+        <li><a href="#s7">Rewards &amp; Points</a></li>
+        <li><a href="#s8">Reviews</a></li>
+        <li><a href="#s9">Vendor Terms</a></li>
+        <li><a href="#s10">Rider Terms</a></li>
+        <li><a href="#s11">User Conduct</a></li>
+        <li><a href="#s12">Intellectual Property</a></li>
+        <li><a href="#s13">Limitation of Liability</a></li>
+        <li><a href="#s14">Account Suspension</a></li>
+        <li><a href="#s15">Privacy</a></li>
+        <li><a href="#s16">Changes to Terms</a></li>
+        <li><a href="#s17">Governing Law</a></li>
+        <li><a href="#s18">Contact Us</a></li>
+      </ol>
     </div>
 
-    <section>
-      <p><strong>Effective Date:</strong> July 28, 2025</p>
-      <p><strong>Business Name:</strong> Foodys Enterprise</p>
+    <!-- 1 -->
+    <section id="s1">
+      <h3><span class="num">1</span> Eligibility</h3>
+      <p>To use Foodys you must:</p>
+      <ul>
+        <li>Be <strong>13 years of age or older</strong>. Users under 18 must have parental or guardian consent.</li>
+        <li>Be located within a <strong>supported university campus</strong>. Foodys currently operates at Veritas University, Abuja and select other campuses.</li>
+        <li>Provide accurate, truthful information during registration.</li>
+      </ul>
+      <div class="callout callout-amber">
+        <span class="icon">⚠️</span>
+        <span>We reserve the right to suspend accounts where we reasonably believe a user does not meet our eligibility requirements.</span>
+      </div>
     </section>
 
-    <section>
+    <!-- 2 -->
+    <section id="s2">
+      <h3><span class="num">2</span> Account Registration</h3>
+      <ul>
+        <li>You must create an account to place orders or list as a vendor.</li>
+        <li>All information provided — including name, email, phone number, and delivery location — must be accurate and kept up to date.</li>
+        <li>You are solely responsible for maintaining the confidentiality of your login credentials. Any activity under your account is your responsibility.</li>
+        <li>You may not create multiple accounts to exploit promotions, discounts, or referral bonuses.</li>
+        <li>Foodys accounts are non-transferable.</li>
+      </ul>
+    </section>
+
+    <!-- 3 -->
+    <section id="s3">
+      <h3><span class="num">3</span> Services Overview</h3>
+      <p>Foodys is a technology platform that connects students and staff on university campuses with campus food vendors for the purpose of ordering and receiving meals. Foodys:</p>
+      <ul>
+        <li>Provides the app and web platform.</li>
+        <li>Facilitates secure digital payments via Monnify.</li>
+        <li>Assigns employed delivery riders to fulfil delivery orders.</li>
+        <li>Manages the order lifecycle from placement to completion.</li>
+      </ul>
+      <div class="callout callout-gray">
+        <span class="icon">ℹ️</span>
+        <span>Foodys <strong>does not prepare food</strong>. All food is prepared solely by the vendors listed on the platform. Foodys is not responsible for the quality, safety, or content of food prepared by vendors.</span>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section id="s4">
+      <h3><span class="num">4</span> Orders &amp; Payments</h3>
+
+      <p><strong>Placing an order</strong></p>
+      <ul>
+        <li>All orders must be placed through the Foodys app.</li>
+        <li>Orders are cashless. <strong>No cash on delivery</strong> is accepted under any circumstances.</li>
+        <li>Payment is processed at checkout via Monnify (bank transfer). Your order is only confirmed once payment is verified.</li>
+        <li>Orders cannot be modified after submission.</li>
+      </ul>
+
+      <p><strong>Packs</strong></p>
+      <ul>
+        <li>Foodys allows you to split a single order into up to <strong>3 packs</strong> — useful for group orders where each person wants their own meal delivered together.</li>
+        <li>A maximum of <strong>3 packs per order</strong> is permitted.</li>
+      </ul>
+
+      <p><strong>Minimum order amount</strong></p>
+      <ul>
+        <li>Delivery orders: minimum of <strong>₦500</strong>.</li>
+        <li>Pickup orders: minimum of <strong>₦300</strong>.</li>
+        <li>Orders below these amounts cannot be processed.</li>
+      </ul>
+
+      <p><strong>Fees</strong></p>
+      <ul>
+        <li>A <strong>delivery fee</strong> is charged based on the distance zone between the restaurant and your delivery location. The applicable fee is shown at checkout before payment.</li>
+        <li>A <strong>service fee of 5%</strong> of your food subtotal is added to every order. This fee supports platform operations.</li>
+        <li>Applicable <strong>packaging fees</strong> for takeaway containers are shown per item and added to your order total.</li>
+      </ul>
+
+      <p><strong>Delivery windows</strong></p>
+      <ul>
+        <li>Foodys operates within defined delivery hours on each campus. Orders cannot be placed outside these hours.</li>
+        <li>An order cutoff time applies before the end of each delivery window. Orders placed after the cutoff will not be accepted.</li>
+      </ul>
+    </section>
+
+    <!-- 5 -->
+    <section id="s5">
+      <h3><span class="num">5</span> Delivery &amp; Pickup</h3>
+
+      <p><strong>Delivery</strong></p>
+      <ul>
+        <li>Deliveries are carried out by Foodys-employed riders.</li>
+        <li>You are responsible for selecting an accurate delivery location on campus.</li>
+        <li>When your rider arrives, you will receive a push notification. You must collect your order promptly — riders will wait a maximum of <strong>5 minutes</strong> at your location.</li>
+        <li>If you cannot be reached after the rider's waiting time, the order may be marked complete without a refund.</li>
+        <li>Estimated delivery times are approximate and may be affected by demand, distance, or other conditions.</li>
+      </ul>
+
+      <p><strong>Pickup</strong></p>
+      <ul>
+        <li>Where a vendor offers pickup, you can collect your order directly from the restaurant at no delivery fee.</li>
+        <li>When your order is ready, you will receive a <strong>4-digit confirmation code</strong> via push notification.</li>
+        <li>You must present this code to the vendor to collect your order. The vendor will verify the code to complete the order.</li>
+        <li>Pickup is only available during the vendor's stated pickup hours.</li>
+      </ul>
+
+      <p><strong>Order confirmation</strong></p>
+      <ul>
+        <li>For delivery orders, the rider confirms completion using a code provided by you at the point of handover.</li>
+        <li>If a rider marks an order as arrived and you do not respond within <strong>10 minutes</strong>, the order will be automatically completed and your earnings and payout calculations will be finalised accordingly.</li>
+      </ul>
+    </section>
+
+    <!-- 6 -->
+    <section id="s6">
+      <h3><span class="num">6</span> Cancellations &amp; Refunds</h3>
+
+      <p><strong>Vendor non-response</strong></p>
+      <ul>
+        <li>If a vendor does not accept or begin preparing your order within <strong>10 minutes</strong> of payment confirmation, the order will be <strong>automatically cancelled</strong> and a full refund will be initiated on your behalf.</li>
+      </ul>
+
+      <p><strong>Vendor rejection</strong></p>
+      <ul>
+        <li>A vendor may reject your order if items are out of stock or they are unable to fulfil it. In such cases, you will be notified and a full refund will be processed.</li>
+      </ul>
+
+      <p><strong>Refund processing</strong></p>
+      <ul>
+        <li>All refunds are processed back to your original payment method (bank account used for transfer) via Monnify.</li>
+        <li>Refunds are typically reflected within <strong>24 hours</strong>, though processing times may vary by bank.</li>
+      </ul>
+
+      <div class="callout callout-red">
+        <span class="icon">❌</span>
+        <span>Orders that have been accepted and are actively being prepared <strong>cannot be cancelled</strong>. Once a vendor accepts your order, the transaction is final.</span>
+      </div>
+
+      <p><strong>No-show &amp; failure to collect</strong></p>
+      <ul>
+        <li>If you fail to meet your rider at the agreed location after being notified, or fail to collect a pickup order after it is marked ready, no refund will be issued.</li>
+      </ul>
+    </section>
+
+    <!-- 7 -->
+    <section id="s7">
+      <h3><span class="num">7</span> Rewards &amp; Points</h3>
+      <p>Foodys operates a loyalty rewards programme to recognise repeat customers.</p>
+
+      <p><strong>Earning points</strong></p>
+      <ul>
+        <li>Points are earned on completed orders, with bonus points for maintaining an active order streak.</li>
+        <li>Points multipliers apply based on streak length (e.g. 1.2× at 3 days, up to 2× at 7 days).</li>
+        <li>Additional points may be earned through referrals and platform milestones.</li>
+      </ul>
+
+      <p><strong>Redeeming rewards</strong></p>
+      <ul>
+        <li>Points can be redeemed for rewards such as <strong>free delivery</strong> or a <strong>₦100 discount</strong> on your order.</li>
+        <li>Rewards have no cash value and <strong>cannot be withdrawn</strong> as money.</li>
+        <li>Rewards are only redeemable within the Foodys platform.</li>
+        <li>Some rewards require a minimum number of points to unlock.</li>
+      </ul>
+
+      <p><strong>Streak restores</strong></p>
+      <ul>
+        <li>A broken streak can be restored within 24 hours using a free restore (up to 5 per calendar month) or by spending points.</li>
+        <li>Free restores reset on the first of each month.</li>
+      </ul>
+
+      <div class="callout callout-amber">
+        <span class="icon">⚠️</span>
+        <span>Foodys reserves the right to modify, suspend, or discontinue the rewards programme at any time. Points have no monetary value and will not be compensated if the programme ends.</span>
+      </div>
+    </section>
+
+    <!-- 8 -->
+    <section id="s8">
+      <h3><span class="num">8</span> Reviews</h3>
+      <ul>
+        <li>Only users who have <strong>completed a paid order</strong> from a restaurant are eligible to leave a review for that restaurant.</li>
+        <li>Reviews must be honest and reflect your genuine experience.</li>
+        <li>Foodys reserves the right to remove reviews that are fraudulent, abusive, or violate these Terms.</li>
+        <li>Vendors may not solicit, incentivise, or manipulate reviews in any way.</li>
+      </ul>
+    </section>
+
+    <!-- 9 -->
+    <section id="s9">
+      <h3><span class="num">9</span> Vendor Terms</h3>
+
+      <div class="callout callout-gray">
+        <span class="icon">📋</span>
+        <span>By registering a restaurant on Foodys and listing your menu, you acknowledge and agree to the vendor obligations set out in these Terms. These Terms constitute the agreement between Foodys and all vendors on the platform.</span>
+      </div>
+
+      <p><strong>Vendor responsibilities</strong></p>
+      <ul>
+        <li>Maintain accurate and up-to-date menu listings, including correct names, prices, descriptions, and item availability.</li>
+        <li>Prepare orders promptly, safely, and hygienically in compliance with applicable food safety standards.</li>
+        <li>Keep your restaurant's availability status current within the app (Open, Closed, or Paused).</li>
+        <li>Accept or begin preparing orders within <strong>10 minutes</strong> of receiving them. Failure to do so will result in automatic cancellation and refund to the customer.</li>
+        <li>Only reject orders for valid operational reasons (e.g. item out of stock). Repeated or unjustified rejections may result in account suspension.</li>
+      </ul>
+
+      <p><strong>Commissions &amp; payouts</strong></p>
+      <ul>
+        <li>Foodys deducts a <strong>commission</strong> from each completed order. The applicable rate is communicated at the time of onboarding and may be updated with notice.</li>
+        <li>Vendor payouts are processed on a scheduled basis via Monnify to the bank account registered on the platform.</li>
+        <li>Vendors must maintain valid and accurate bank account information. Foodys is not liable for failed payouts resulting from incorrect banking details.</li>
+      </ul>
+
+      <p><strong>Restaurant availability</strong></p>
+      <ul>
+        <li>Vendors may temporarily pause their restaurant (mark as Offline) for up to 60 minutes when operationally necessary. During this period no new orders will be accepted.</li>
+        <li>Restaurants are automatically closed at the end of each campus delivery window and reopened the following day if auto-open is enabled.</li>
+      </ul>
+
+      <p><strong>Onboarding approval</strong></p>
+      <ul>
+        <li>All vendor accounts are subject to approval by Foodys before they become visible to customers.</li>
+        <li>Foodys reserves the right to decline or revoke approval at its discretion.</li>
+      </ul>
+    </section>
+
+    <!-- 10 -->
+    <section id="s10">
+      <h3><span class="num">10</span> Rider Terms</h3>
+      <ul>
+        <li>Foodys riders are <strong>direct employees</strong> of Foodys Links LTD.</li>
+        <li>Riders operate under a separate employment agreement and are subject to Foodys operational policies.</li>
+        <li>Riders are assigned to delivery orders by the platform and are expected to collect and deliver all orders in a timely and professional manner.</li>
+        <li>Rider earnings (delivery share) are calculated per order and disbursed on a scheduled basis.</li>
+      </ul>
+    </section>
+
+    <!-- 11 -->
+    <section id="s11">
+      <h3><span class="num">11</span> User Conduct</h3>
+      <p>All users (customers, vendors, and riders) agree not to:</p>
+      <ul>
+        <li>Place fraudulent, false, or test orders.</li>
+        <li>Create multiple accounts to abuse promotions, discounts, referral bonuses, or the rewards programme.</li>
+        <li>Harass, threaten, or abuse vendors, riders, customers, or Foodys staff through any channel.</li>
+        <li>Attempt to reverse-engineer, hack, scrape, or interfere with any part of the Foodys platform or infrastructure.</li>
+        <li>Use the platform for any unlawful purpose under Nigerian law.</li>
+        <li>Provide false information including fake delivery locations, false reviews, or misrepresented menu items.</li>
+      </ul>
+      <p>Violations may result in immediate account suspension and, where applicable, referral to the appropriate authorities.</p>
+    </section>
+
+    <!-- 12 -->
+    <section id="s12">
+      <h3><span class="num">12</span> Intellectual Property</h3>
       <p>
-        Welcome to Foodys! These Terms and Conditions ("Terms") apply to your use of the Foodys mobile application, website, and related services (collectively, the "Services"). By creating an account, placing an order, or accessing our Services, you agree to comply with and be bound by these Terms.
+        All content on the Foodys platform — including the app design, logos, branding, copy, and software — is the property of Foodys Links LTD. You may not copy, reproduce, distribute, or create derivative works from any part of the platform without prior written permission from Foodys.
       </p>
     </section>
 
-    <section>
-      <h3>1. Eligibility</h3>
-      <p>To use Foodys, you must:</p>
+    <!-- 13 -->
+    <section id="s13">
+      <h3><span class="num">13</span> Limitation of Liability</h3>
+      <p>To the fullest extent permitted by Nigerian law, Foodys is not liable for:</p>
       <ul>
-        <li>Be located within our delivery zones (university campuses).</li>
+        <li>Delays, failed deliveries, or service interruptions caused by circumstances beyond our reasonable control (including network outages, weather, or traffic).</li>
+        <li>The quality, safety, accuracy, or hygiene of food prepared by vendors. Vendors are solely responsible for their food products.</li>
+        <li>Allergic reactions or health issues arising from vendor food. Customers with dietary requirements or allergies are advised to confirm ingredients directly with the vendor before ordering.</li>
+        <li>Payment failures or delays caused by third-party providers (Monnify or issuing banks).</li>
+        <li>Loss of points, streaks, or rewards due to app downtime or technical issues, except where caused by our gross negligence.</li>
       </ul>
     </section>
 
-    <section>
-      <h3>2. Account Registration</h3>
+    <!-- 14 -->
+    <section id="s14">
+      <h3><span class="num">14</span> Account Suspension &amp; Termination</h3>
+      <p>Foodys reserves the right to:</p>
       <ul>
-        <li>You must register for an account to place orders.</li>
-        <li>All information provided must be accurate and updated when necessary.</li>
-        <li>You are responsible for safeguarding your login credentials.</li>
+        <li>Suspend or permanently terminate any account that violates these Terms.</li>
+        <li>Restrict access to the platform for users engaged in fraudulent, abusive, or harmful behaviour.</li>
+        <li>Remove vendor listings that do not comply with platform standards.</li>
       </ul>
+      <p>Where appropriate, we will notify you before taking action. In cases of serious or repeated violations, suspension may be immediate and without prior notice.</p>
     </section>
 
-    <section>
-      <h3>3. Services Offered</h3>
+    <!-- 15 -->
+    <section id="s15">
+      <h3><span class="num">15</span> Privacy</h3>
       <p>
-        Foodys is a platform that connects individuals within the university ecosystem with food vendors (restaurants or cafes) for the purpose of placing food orders and having them delivered.
-      </p>
-      <p>We:</p>
-      <ul>
-        <li>Provide the platform.</li>
-        <li>Facilitate digital payments.</li>
-        <li>Assign delivery personnel (riders) when available.</li>
-      </ul>
-      <p>We <strong>do not</strong> prepare the food ourselves.</p>
-    </section>
-
-    <section>
-      <h3>4. Orders and Payments</h3>
-      <ul>
-        <li>All orders must be placed through the Foodys app or website.</li>
-        <li>Payment is required at checkout via our secure third-party payment provider (Monnify).</li>
-        <li><strong>No cash on delivery</strong> is allowed.</li>
-        <li>Orders cannot be modified once submitted.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h3>5. Cancellations and Refunds</h3>
-      <ul>
-        <li>If a vendor is unavailable or an item is out of stock, we may cancel your order and issue a full or partial refund.</li>
-        <li>Refunds are processed through the original payment method and may take up to 5–10 business days.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h3>6. Vendor Responsibilities</h3>
-      <p>Vendors are responsible for:</p>
-      <ul>
-        <li>Accurate listings (name, prices, descriptions, availability).</li>
-        <li>Preparing orders promptly and hygienically.</li>
-        <li>Updating their availability status and order status in real-time.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h3>7. Delivery</h3>
-      <ul>
-        <li>Deliveries are handled by Foodys riders.</li>
-        <li>Estimated delivery times are approximate.</li>
-        <li>You are responsible for providing an accurate delivery location.</li>
-        <li>If the rider cannot reach you after multiple attempts, the order may be canceled without refund.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h3>8. User Conduct</h3>
-      <p>You agree not to:</p>
-      <ul>
-        <li>Misuse the app (e.g., place fake orders, use multiple fake accounts).</li>
-        <li>Harass vendors, riders, or other users.</li>
-        <li>Attempt to disrupt, hack, or reverse-engineer our app or systems.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h3>9. Intellectual Property</h3>
-      <p>
-        All logos, app designs, and content belong to Foodys. You may not copy, reuse, or redistribute any part of the platform without written permission.
+        We collect and process personal data in accordance with our Privacy Policy. By using Foodys, you consent to the collection, use, and sharing of your information as described in the Privacy Policy, including sharing relevant order details with vendors and riders to fulfil your orders.
       </p>
     </section>
 
-    <section>
-      <h3>10. Limitation of Liability</h3>
-      <p>Foodys is not responsible for:</p>
-      <ul>
-        <li>Delays or failed deliveries due to weather, traffic, or other conditions.</li>
-        <li>Health issues caused by vendor food (vendors are solely responsible for food safety).</li>
-        <li>Payment issues caused by third-party payment gateways.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h3>11. Account Suspension</h3>
-      <ul>
-        <li>Suspend or terminate your account if you violate these Terms.</li>
-        <li>Refuse service to users engaged in fraudulent or abusive behavior.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h3>12. Privacy</h3>
+    <!-- 16 -->
+    <section id="s16">
+      <h3><span class="num">16</span> Changes to These Terms</h3>
       <p>
-        We collect and process user data in accordance with our Privacy Policy. By using Foodys, you agree to the collection and use of your data as described therein.
+        Foodys may update these Terms from time to time. When we make significant changes, we will notify users via push notification or in-app message, and update the effective date at the top of this document. Continued use of the platform after such notification constitutes your acceptance of the updated Terms.
       </p>
     </section>
 
-    <section>
-      <h3>13. Changes to These Terms</h3>
+    <!-- 17 -->
+    <section id="s17">
+      <h3><span class="num">17</span> Governing Law</h3>
       <p>
-        We may update these Terms occasionally. If we make significant changes, we will notify users via the app or email. Continued use of Foodys means you accept the updated Terms.
+        These Terms are governed by and construed in accordance with the laws of the <strong>Federal Republic of Nigeria</strong>. Any disputes arising out of or in connection with these Terms shall be subject to the jurisdiction of Nigerian courts.
       </p>
     </section>
 
-    <section>
-      <h3>14. Governing Law</h3>
-      <p>
-        These Terms are governed by the laws of the Federal Republic of Nigeria.
-      </p>
+    <!-- 18 -->
+    <section id="s18">
+      <h3><span class="num">18</span> Contact Us</h3>
+      <div class="contact-card">
+        <p>For questions, complaints, refund enquiries, or support, please reach us at:</p>
+        <br>
+        <p>📧 <strong>Email:</strong> <a href="mailto:support@foodysmobile.com">support@foodysmobile.com</a></p>
+        <p>💼 <strong>Business name:</strong> Foodys Links LTD</p>
+        <p>📍 <strong>Operating region:</strong> Nigeria</p>
+      </div>
     </section>
 
-    <section class="contact-info">
-      <h3>15. Contact Us</h3>
-      <p>For questions, complaints, or support:</p>
-      <p>📧 Email: <a href="mailto:support@foodysmobile.com">support@foodysmobile.com</a></p>
-      <!-- <p>📱 Phone: +234 807 809 2922</p> -->
-      <p>💼 Registered as: <strong>Foodys Enterprise</strong></p>
-    </section>
-
-    <section class="user-consent">
+    <!-- Consent -->
+    <div class="consent">
       <strong>✅ User Consent</strong>
       <p>
-        By signing up, placing an order, or using Foodys, you confirm that you have read, understood, and agree to be bound by these Terms and Conditions.
+        By signing up, placing an order, registering as a vendor, or otherwise using the Foodys platform, you confirm that you have read and understood these Terms and Conditions in their entirety and agree to be legally bound by them.
       </p>
-    </section>
+    </div>
 
-    <section style="font-size: 0.875rem; color: #555; margin-top: 40px; text-align: center;">
-        Icons made by <a href="https://www.flaticon.com/authors/freepik" target="_blank" rel="noopener noreferrer" style="color: #555; text-decoration: underline;">Freepik</a> from <a href="https://www.flaticon.com/" target="_blank" rel="noopener noreferrer" style="color: #555; text-decoration: underline;">Flaticon</a>
-    </section>
+    <footer>
+      Icons by <a href="https://www.flaticon.com/authors/freepik" target="_blank" rel="noopener">Freepik</a> from <a href="https://www.flaticon.com/" target="_blank" rel="noopener">Flaticon</a>
+    </footer>
 
-  </main>
-</body>
-</html>
   </main>
 </body>
 </html>

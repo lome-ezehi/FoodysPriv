@@ -548,10 +548,10 @@
           <tr><th>Scenario</th><th>System Response</th></tr>
         </thead>
         <tbody>
-          <tr><td>Vendor does not respond within 10 minutes</td><td>Order auto-cancelled, full refund initiated automatically</td></tr>
+          <tr><td>Vendor does not respond within 15 minutes</td><td>Order auto-cancelled, full refund initiated automatically</td></tr>
           <tr><td>Vendor rejects order</td><td>Refund initiated, customer notified via push</td></tr>
           <tr><td>No riders available</td><td>Order queued, retried every 60 seconds until rider available</td></tr>
-          <tr><td>Customer unavailable at delivery</td><td>Rider waits 5 minutes; order auto-completes after 10 minutes at arrival</td></tr>
+          <tr><td>Customer unavailable at delivery</td><td>Rider waits 5 minutes; order auto-completes after 24 hours at arrival</td></tr>
           <tr><td>App downtime</td><td>Status page updated; manual coordination via WhatsApp support</td></tr>
           <tr><td>Payment not confirmed</td><td>Order stays in draft; payment verified via Monnify webhook or manual check</td></tr>
         </tbody>
@@ -579,7 +579,7 @@
         <div class="step-col"><div class="step-dot">2</div><div class="step-line"></div></div>
         <div class="step-body">
           <strong>Vendor notified</strong>
-          <p>Push notification and in-app alert sent to vendor. Vendor must respond within <strong>10 minutes</strong>. Reminder sent at T+3 min and T+6 min. Auto-cancel and refund fire at T+10 min if no response.</p>
+          <p>Push notification and in-app alert sent to vendor. Vendor must respond within <strong>15 minutes</strong>. Reminder sent at T+3 min and T+6 min. Auto-cancel and refund fire at T+15 min if no response.</p>
         </div>
       </div>
       <div class="flow-step">
@@ -614,7 +614,7 @@
         <div class="step-col"><div class="step-dot">7</div><div class="step-line"></div></div>
         <div class="step-body">
           <strong>Delivery to customer</strong>
-          <p>Customer receives push notification when rider marks arrival. Customer must meet rider within 5 minutes. If unreachable after 10 minutes, the order is auto-completed.</p>
+          <p>Customer receives push notification when rider marks arrival. Customer must meet rider within 5 minutes. If unreachable after 24 hours, the order is auto-completed.</p>
         </div>
       </div>
       <div class="flow-step">
@@ -857,7 +857,7 @@
     <ul>
       <li>Minimum age of 13 to use the platform</li>
       <li>Cashless-only payments via Monnify</li>
-      <li>Auto-cancellation and refund if vendor does not respond within 10 minutes</li>
+      <li>Auto-cancellation and refund if vendor does not respond within 15 minutes</li>
       <li>5% commission on food subtotal (vendor) + 5% service fee (customer)</li>
       <li>Rewards points have no cash value and cannot be withdrawn</li>
       <li>Foodys disclaims liability for food quality, allergic reactions, or food safety — vendors are solely responsible</li>
@@ -871,7 +871,7 @@
     </div>
     <ul>
       <li>Commission rate: <strong>5% of food subtotal per order</strong></li>
-      <li>Vendor must maintain accurate menus, accept orders within 10 minutes, and prepare food hygienically</li>
+      <li>Vendor must maintain accurate menus, accept orders within 15 minutes, and prepare food hygienically</li>
       <li>Repeated unjustified rejections or quality failures may result in suspension</li>
     </ul>
 
@@ -959,7 +959,7 @@
     <ul>
       <li>Maintain accurate, up-to-date menu listings and pricing</li>
       <li>Uphold food safety and hygiene standards</li>
-      <li>Respond to (accept or reject) incoming orders within <strong>10 minutes</strong>. Failure triggers automatic cancellation and customer refund</li>
+      <li>Respond to (accept or reject) incoming orders within <strong>15 minutes</strong>. Failure triggers automatic cancellation and customer refund</li>
       <li>Complete preparation within the estimated prep time for each order</li>
       <li>Package orders correctly, label bags with order code and bag number</li>
       <li>Keep availability status current in the app</li>
@@ -1100,11 +1100,11 @@
       <table>
         <thead><tr><th>Parameter</th><th>Value</th><th>Notes</th></tr></thead>
         <tbody>
-          <tr><td>Vendor response window</td><td>10 minutes</td><td>Reminder at T+3 and T+6; auto-cancel at T+10</td></tr>
+          <tr><td>Vendor response window</td><td>15 minutes</td><td>Reminder at T+3 and T+6; auto-cancel at T+15</td></tr>
           <tr><td>Batch collection window</td><td>3 minutes</td><td>Force dispatch at 5 orders</td></tr>
           <tr><td>Max orders per batch</td><td>5</td><td>Force-dispatch trigger</td></tr>
           <tr><td>Rider wait at delivery</td><td>5 minutes</td><td>Before customer is marked unreachable</td></tr>
-          <tr><td>Auto-complete (arrival)</td><td>10 minutes</td><td>If customer unreachable after arrival</td></tr>
+          <tr><td>Auto-complete (arrival)</td><td>15 minutes</td><td>If customer unreachable after arrival</td></tr>
           <tr><td>Min delivery order</td><td>₦500</td><td>Hard limit at cart and backend</td></tr>
           <tr><td>Min pickup order</td><td>₦300</td><td>Hard limit at cart and backend</td></tr>
           <tr><td>Max packs per order</td><td>3</td><td>Enforced frontend and backend</td></tr>
